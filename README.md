@@ -32,9 +32,11 @@ host    all             all             127.0.0.1/32            trust
 host    all             all             ::1/128                 trust
 ```
   -> Only for testing in your local machine, create the database:  
+  ```
   psql -U postgres  
   CREATE DATABASE server;  
   \q  
+  ```
 -> Setup Diesel:  
   cargo install diesel_cli --no-default-features --features postgres  
   diesel setup (a "migrations" folder is created after last command)  
@@ -91,6 +93,7 @@ Select "AWS service" as the trusted entity and choose "EC2" as the service that 
 Click "Next: Permissions" to proceed to the permissions page.  
 In the "Attach permissions policies" section, click on the "Create Policy" button to create a new policy.  
 In the policy editor, select "JSON" and paste the following policy document  
+```
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -105,7 +108,8 @@ In the policy editor, select "JSON" and paste the following policy document
       ]
     }
   ]
-}  
+}
+```
 Click on the "Review policy" button, give the policy a name, and then click on the "Create policy" button.  
 Go back to the "Create role" page, and refresh the list of policies. Select the policy you just created, and then click on the "Next: Tags" button.  
 (Optional) Add any desired tags to the role.  
