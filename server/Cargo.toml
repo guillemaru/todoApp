@@ -1,7 +1,7 @@
 [package]
 name = "server"
 version = "0.1.0"
-authors = ["Guillermo Marugan <guillermomarugan@icloud.com>"]
+authors = ["Guillermo Marugan"]
 edition = "2018"
 [dependencies]
 actix-web = "3.0"

@@ -4,7 +4,7 @@ Software required:
 nodejs, Rust, PostgreSQL, Docker, Terraform, AWS CLI
 
 
-FRONTEND
+#FRONTEND
 -> Install nodejs
 -> "ui" folder comes from creating a React project with "npx create-react-app <name>"
 -> Install "axios" with "npm install axios"
@@ -16,18 +16,20 @@ FRONTEND
   add to tsconfig.json the following "compilerOptions" -> "jsx": "react"
 
 
-BACKEND SETUP
+#BACKEND SETUP
 -> Install Rust
 -> (if you want the code to recompile every time you change and save a file) cargo install cargo-watch
 -> Install PostgreSQL:
   -> add C:\Program Files\PostgreSQL\15\lib and C:\Program Files\PostgreSQL\15\bin to your PATH (this is to test locally, the postgres Docker image you build will have that)
   -> edit pg_hba.conf from the PostgreSQL installation folder to have:
+```
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 # IPv4 local connections:
 host    all             all             127.0.0.1/32            trust
 # IPv6 local connections:
 host    all             all             ::1/128                 trust
+```
   -> Only for testing in your local machine, create the database:
   psql -U postgres
   CREATE DATABASE server;
@@ -43,7 +45,7 @@ host    all             all             ::1/128                 trust
 psql -U postgres -d server -c "SELECT * FROM notes;"
 
 
-DEPLOYMENT
+#DEPLOYMENT
 -> Run the containers in your machine with the top-level docker-compose.yaml file
 Build the Docker images (ui, server and database) on your local machine:
 $ docker-compose build
