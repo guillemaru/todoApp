@@ -1,10 +1,11 @@
 <iframe title="vimeo-player" src="https://player.vimeo.com/video/815841392?h=7c74d120cc" width="640" height="360" frameborder="0" allowfullscreen></iframe>
 
-Software required:
+
+# Software required:
 nodejs, Rust, PostgreSQL, Docker, Terraform, AWS CLI
 
 
-#FRONTEND
+# FRONTEND
 -> Install nodejs
 -> "ui" folder comes from creating a React project with "npx create-react-app <name>"
 -> Install "axios" with "npm install axios"
@@ -16,7 +17,7 @@ nodejs, Rust, PostgreSQL, Docker, Terraform, AWS CLI
   add to tsconfig.json the following "compilerOptions" -> "jsx": "react"
 
 
-#BACKEND SETUP
+# BACKEND SETUP
 -> Install Rust
 -> (if you want the code to recompile every time you change and save a file) cargo install cargo-watch
 -> Install PostgreSQL:
@@ -45,7 +46,7 @@ host    all             all             ::1/128                 trust
 psql -U postgres -d server -c "SELECT * FROM notes;"
 
 
-#DEPLOYMENT
+# DEPLOYMENT
 -> Run the containers in your machine with the top-level docker-compose.yaml file
 Build the Docker images (ui, server and database) on your local machine:
 $ docker-compose build
