@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  rust-api:
+    image: guillemaru/todoapp-rust-api:latest
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgres://postgres:password@postgres:5432/server
+      HOST: 0.0.0.0
+      PORT: 5000
+    depends_on:
+      - postgres
+
+  postgres:
+    image: guillemaru/postgres:latest
+    command: postgres -c config_file=/etc/postgresql.conf
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: server
+    volumes:
+      - /pgdata:/var/lib/postgresql/data
+      - ./postgresql.conf:/etc/postgresql.conf
+    ports:
+      - "5432:5432"
