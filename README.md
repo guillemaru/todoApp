@@ -1,4 +1,4 @@
-<iframe title="vimeo-player" src="https://player.vimeo.com/video/815841392?h=7c74d120cc" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+[Watch a demo of the app](https://vimeo.com/815841392)
 
 
 # Software required:
