@@ -11,7 +11,7 @@ async fn find_all() -> Result<HttpResponse, CustomError> {
 #[post("/notes")]
 async fn create(note: web::Json<Note>) -> Result<HttpResponse, CustomError> {
     let note = Notes::create(note.into_inner())?;
-    Ok(HttpResponse::Ok().json(note)) //TODO: ui is expecting a JSON with an "id" field and a "content" field
+    Ok(HttpResponse::Ok().json(note))
 }
 #[put("/notes/{id}")]
 async fn update(
@@ -19,7 +19,7 @@ async fn update(
     note: web::Json<Note>,
 ) -> Result<HttpResponse, CustomError> {
     let note = Notes::update(id.into_inner(), note.into_inner())?;
-    Ok(HttpResponse::Ok().json(note)) //TODO: ui is expecting a JSON with an "id" field and a "content" field
+    Ok(HttpResponse::Ok().json(note))
 }
 #[delete("/notes/{id}")]
 //the id parameter is extracted from the URL path using the web::Path extractor

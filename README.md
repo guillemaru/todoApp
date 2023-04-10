@@ -21,8 +21,8 @@ nodejs, Rust, PostgreSQL, Docker, Terraform, AWS CLI
 -> Install Rust  
 -> (if you want the code to recompile every time you change and save a file) cargo install cargo-watch  
 -> Install PostgreSQL:  
-  -> add C:\Program Files\PostgreSQL\15\lib and C:\Program Files\PostgreSQL\15\bin to your PATH (this is to test locally, the postgres Docker image you build will have that)  
-  -> edit pg_hba.conf from the PostgreSQL installation folder to have:
+  --> add C:\Program Files\PostgreSQL\15\lib and C:\Program Files\PostgreSQL\15\bin to your PATH (this is to test locally, the postgres Docker image you build will have that)  
+  --> edit pg_hba.conf from the PostgreSQL installation folder to have:
 ```
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
@@ -31,7 +31,7 @@ host    all             all             127.0.0.1/32            trust
 # IPv6 local connections:
 host    all             all             ::1/128                 trust
 ```
-  -> Only for testing in your local machine, create the database:  
+  --> Only for testing in your local machine, create the database:  
   ```
   psql -U postgres  
   CREATE DATABASE server;  
@@ -55,20 +55,20 @@ $ docker-compose build
 $ docker-compose up -d  
 
 -> Prepare for deployment to AWS:  
-  -> Either save the 3 images in a ".tar" file that you would copy into an AWS EC2 instance and run:  
-    -> docker save postgres todoapp-rust-api todoapp-react-component > myapp.tar  
-    -> Use the terraform file provisioner to copy the tar archive to the EC2 instance and the "docker load" command to load the image on the EC2 instance.  
-  -> Or for Windows users where copying the file to the instance is not possible:  
-    -> Create an account in Dockerhub (with the Docker Desktop application, for example)  
-    -> Push the 3 images to Dockerhub (fairly easy using Docker VSCode extension)  
-    -> copy a docker-compose.yaml file from your machine into an S3 bucket  
-    -> Get the file from S3 in your EC2 instance  
-    -> docker-compose up -d  
+  --> Either save the 3 images in a ".tar" file that you would copy into an AWS EC2 instance and run:  
+    ---> docker save postgres todoapp-rust-api todoapp-react-component > myapp.tar  
+    ---> Use the terraform file provisioner to copy the tar archive to the EC2 instance and the "docker load" command to load the image on the EC2 instance.  
+  --> Or for Windows users where copying the file to the instance is not possible:  
+    ---> Create an account in Dockerhub (with the Docker Desktop application, for example)  
+    ---> Push the 3 images to Dockerhub (fairly easy using Docker VSCode extension)  
+    ---> copy a docker-compose.yaml file from your machine into an S3 bucket  
+    ---> Get the file from S3 in your EC2 instance  
+    ---> docker-compose up -d  
 
 -> Getting your files into an S3 bucket:  
-  -> Upload the docker-compose.yaml file and the postgresql.conf to an S3 bucket.  
-  -> Create bucket: aws s3 mb s3://mybucket  
-  -> Copy:   
+  --> Upload the docker-compose.yaml file and the postgresql.conf to an S3 bucket.  
+  --> Create bucket: aws s3 mb s3://mybucket  
+  --> Copy:   
   $ aws s3 cp docker-compose.yaml s3://guillerbucket/myApp/docker-compose.yaml  
   $ aws s3 cp postgresql.conf s3://guillerbucket/myApp/postgresql.conf  
 
@@ -80,11 +80,11 @@ terraform apply
 terraform destroy  
 
 -> Once the AWS instance is deployed:  
-  -> Using "remote-exec" or SSHing into the EC2 instance terminal:  
+  --> Using "remote-exec" or SSHing into the EC2 instance terminal:  
     $ aws s3 cp s3://guillerbucket/myApp/docker-compose.yaml .  
     $ aws s3 cp s3://guillerbucket/myApp/postgresql.conf .  
-  -> Run docker-compose up -d to start the containers in the background.  
-  -> If you pushed your images to Docker Hub, Docker Compose will automatically pull the latest versions of the images from Docker Hub.  
+  --> Run docker-compose up -d to start the containers in the background.  
+  --> If you pushed your images to Docker Hub, Docker Compose will automatically pull the latest versions of the images from Docker Hub.  
 
 -> How to access the S3 bucket from the created EC2 instance:  
 Open the IAM console in the AWS Management Console.  
