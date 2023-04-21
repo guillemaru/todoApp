@@ -1,3 +1,4 @@
+[Read the tutorial to develop this app](https://medium.com/@guille_maru/build-and-deploy-a-notes-app-with-react-typescript-rust-postgresql-docker-terraform-and-aws-348ec7ab8226)
 [Watch a demo of the app](https://vimeo.com/815841392)
 
 
